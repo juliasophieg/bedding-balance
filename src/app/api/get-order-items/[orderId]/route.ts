@@ -3,10 +3,10 @@ import { getOrderItems } from "../../../../utils/db";
 
 export async function GET(
   request: Request,
-  context: { params: { orderId: string } }
+  { params }: { params: Record<string, string> }
 ) {
   try {
-    const orderId = parseInt(context.params.orderId);
+    const orderId = parseInt(params.orderId);
     const orderItems = await getOrderItems(orderId);
     return NextResponse.json(orderItems);
   } catch (error) {
