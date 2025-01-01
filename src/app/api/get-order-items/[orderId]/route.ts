@@ -3,10 +3,11 @@ import { getOrderItems } from "../../../../utils/db";
 
 export async function GET(
   request: Request,
-  { params }: { params: { orderId: number } }
+  context: { params: { orderId: string } }
 ) {
   try {
-    const orderItems = await getOrderItems(params.orderId);
+    const orderId = parseInt(context.params.orderId);
+    const orderItems = await getOrderItems(orderId);
     return NextResponse.json(orderItems);
   } catch (error) {
     console.error("Error fetching order items:", error);
