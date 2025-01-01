@@ -2,9 +2,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
+interface OrderItems {
+  id: number;
+  order_id: number;
+  stall: string;
+}
+
 export default function OrderPage() {
   const params = useParams();
-  const [orderItems, setOrderItems] = useState([]);
+  const [orderItems, setOrderItems] = useState<OrderItems[]>([]);
 
   useEffect(() => {
     fetch(`/api/get-order-items/${params.id}`)

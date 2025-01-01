@@ -9,6 +9,7 @@ export async function GET(
     const orderItems = await getOrderItems(params.orderId);
     return NextResponse.json(orderItems);
   } catch (error) {
+    console.error("Error fetching order items:", error);
     return NextResponse.json(
       { error: "Failed to fetch orders" },
       { status: 500 }

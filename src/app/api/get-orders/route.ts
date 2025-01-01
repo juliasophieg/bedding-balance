@@ -6,6 +6,7 @@ export async function GET() {
     const orders = await getOrders();
     return NextResponse.json(orders);
   } catch (error) {
+    console.error("Error fetching order items:", error);
     return NextResponse.json(
       { error: "Failed to fetch orders" },
       { status: 500 }

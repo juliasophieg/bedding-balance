@@ -2,6 +2,12 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+interface Order {
+  id: number;
+  order_name: string;
+  created_at: string;
+}
+
 const createOrder = async () => {
   const response = await fetch("/api/create-order", {
     method: "POST",
@@ -23,7 +29,7 @@ const createOrder = async () => {
 };
 
 export default function Home() {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
     fetch("/api/get-orders")
@@ -46,7 +52,7 @@ export default function Home() {
               key={order.id}
               className="cursor-pointer p-2 hover:bg-gray-100"
             >
-              {order.order_name} -{" "}
+              {order.order_name} -
               {new Date(order.created_at).toLocaleDateString()}
             </Link>
           ))}
