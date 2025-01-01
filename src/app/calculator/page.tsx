@@ -126,6 +126,9 @@ export default function Calculate() {
     field: keyof Horse,
     value: string | number
   ) => {
+    if (field === "stall") {
+      return;
+    }
     const newHorses = [...horses];
     if (field === "name") {
       newHorses[index][field] = value as string;
